@@ -1,0 +1,394 @@
+{   
+    "stations":{
+        "URL":"/iaga/stations",
+        "values":[
+            {
+                "start_longitude":"53..32",
+                "result":"can not convert start_longitude:53..32 to float."
+            },{
+                "start_longitude":"",
+                "result":"can not convert start_longitude: to float."
+            },
+            
+            {
+                "start_longitude":-0.001,
+                "result":"start_longitude out of range(0,360)."
+            },{
+                "start_longitude":360.001,
+                "result":"start_longitude out of range(0,360)."
+            },
+            
+            {
+                "end_longitude":"0.asd",
+                "result":"can not convert end_longitude:0.asd to float."
+            },{
+                "end_longitude":"",
+                "result":"can not convert end_longitude: to float."
+            },
+            
+            {
+                "end_longitude":-0.001,
+                "result":"end_longitude out of range(0,360)."
+            },{
+                "end_longitude":360.001,
+                "result":"end_longitude out of range(0,360)."
+            },
+
+            {
+                "start_latitude":"45.23.",
+                "result":"can not convert start_latitude:45.23. to float."
+            },{
+                "start_latitude":"",
+                "result":"can not convert start_latitude: to float."
+            },
+
+            {
+                "start_latitude":-90.001,
+                "result":"start_latitude out of range(-90,90)."
+            },{
+                "start_latitude":90.001,
+                "result":"start_latitude out of range(-90,90)."
+            },
+
+            {
+                "end_latitude":"abcd",
+                "result":"can not convert end_latitude:abcd to float."
+            },{
+                "end_latitude":"",
+                "result":"can not convert end_latitude: to float."
+            },
+
+            {
+                "end_latitude":-90.001,
+                "result":"end_latitude out of range(-90,90)."
+            },{
+                "end_latitude":90.001,
+                "result":"end_latitude out of range(-90,90)."
+            },
+
+            {
+                "start_longitude":261.588,
+                "end_longitude":43.433,
+                "result":"the range of location is invalid."
+            },
+
+            {
+                "offset":"5.3",
+                "result":"can not convert offset:5.3 to int."
+            },{
+                "offset":"asd",
+                "result":"can not convert offset:asd to int."
+            },
+
+            {
+                "offset":-10,
+                "result":"offset:-10 isn't a nonnegative number."
+            },
+
+            {
+                "number":"9.8",
+                "result":"can not convert number:9.8 to int."
+            },{
+                "number":"asd",
+                "result":"can not convert number:asd to int." 
+            },
+
+            {
+                "number":0,
+                "result":"number:0 isn't a positive number."
+            },{
+                "number":-20,
+                "result":"number:-20 isn't a positive number."
+            },
+
+            {},{
+                "start_longitude":0,
+                "end_longitude":360,
+                "start_latitude":-90,
+                "end_latitude":90,
+                "offset":0,
+                "number":100
+            },{
+                "start_longitude":43.433,
+                "end_longitude":261.588,
+                "start_latitude":-59.197,
+                "end_latitude":67.25,
+                "offset":13,
+                "number":47
+            },{
+                "start_longitude":38.17,
+                "end_longitude":38.43,
+                "start_latitude":57.93,
+                "end_latitude":58.25,
+                "offset":0
+            }
+        ]
+    },
+    "data":{
+        "URL":"/iaga/data",
+        "values":[
+            {
+                "start_time":"",
+                "result":"start_time and end_time must appeared together."
+            },{
+                "start_time":"asdsadss",
+                "result":"start_time and end_time must appeared together."
+            },{
+                "start_time":"2010-01-09 18:23:14",
+                "result":"start_time and end_time must appeared together."
+            },{
+                "end_time":"",
+                "result":"start_time and end_time must appeared together."
+            },{
+                "end_time":"adnjsakn",
+                "result":"start_time and end_time must appeared together."
+            },{
+                "end_time":"2010-02-03 11:22:16",
+                "result":"start_time and end_time must appeared together."
+            },
+
+            {
+                "start_time":"",
+                "end_time":"2010-01-09 18:23:14",
+                "result":"start_time: doesn't match '%Y-%m-%d %H:%M:%S'."
+            },{
+                "start_time":"asdsad",
+                "end_time":"2010-01-09 18:23:14",
+                "result":"start_time:asdsad doesn't match '%Y-%m-%d %H:%M:%S'."
+            },{
+                "start_time":"2010-02-aa 11:22:16",
+                "end_time":"2010-01-09 18:23:14",
+                "result":"start_time:2010-02-aa 11:22:16 doesn't match '%Y-%m-%d %H:%M:%S'."
+            },{
+                "start_time":"2010-02-03 11-22-16",
+                "end_time":"2010-01-09 18:23:14",
+                "result":"start_time:2010-02-03 11-22-16 doesn't match '%Y-%m-%d %H:%M:%S'."
+            },
+
+            {
+                "start_time":"2010-02-03 11:22:16",
+                "end_time":"",
+                "result":"end_time: doesn't match '%Y-%m-%d %H:%M:%S'."
+            },{
+                "start_time":"2010-01-09 18:23:14",
+                "end_time":"asdsad",
+                "result":"end_time:asdsad doesn't match '%Y-%m-%d %H:%M:%S'."
+            },{
+                "start_time":"2010-02-03 11:22:16",
+                "end_time":"2010-01-09 18-23-14",
+                "result":"end_time:2010-01-09 18-23-14 doesn't match '%Y-%m-%d %H:%M:%S'."
+            },{
+                "start_time":"2010-02-03 11:22:16",
+                "end_time":"2010-01-bb 18:23:14",
+                "result":"end_time:2010-01-bb 18:23:14 doesn't match '%Y-%m-%d %H:%M:%S'."
+            },
+
+            {
+                "start_time":"2010-02-03 11:22:16",
+                "end_time":"2010-01-09 18:23:14",
+                "result":"please check time range, start_time can't over end_time."
+            },
+
+            {
+                "start_longitude":"53..32",
+                "result":"can not convert start_longitude:53..32 to float."
+            },{
+                "start_longitude":"",
+                "result":"can not convert start_longitude: to float."
+            },
+
+            {
+                "start_longitude":-0.001,
+                "result":"start_longitude out of range(0,360)."
+            },{
+                "start_longitude":360.001,
+                "result":"start_longitude out of range(0,360)."
+            },
+
+            {
+                "end_longitude":"0.asd",
+                "result":"can not convert end_longitude:0.asd to float."
+            },{
+                "end_longitude":"",
+                "result":"can not convert end_longitude: to float."
+            },
+
+            {
+                "end_longitude":-0.001,
+                "result":"end_longitude out of range(0,360)."
+            },{
+                "end_longitude":360.001,
+                "result":"end_longitude out of range(0,360)."
+            },
+
+            {
+                "start_latitude":"45.23.",
+                "result":"can not convert start_latitude:45.23. to float."
+            },{
+                "start_latitude":"",
+                "result":"can not convert start_latitude: to float."
+            },
+
+            {
+                "start_latitude":-90.001,
+                "result":"start_latitude out of range(-90,90)."
+            },{
+                "start_latitude":90.001,
+                "result":"start_latitude out of range(-90,90)."
+            },
+
+            {
+                "end_latitude":"abcd",
+                "result":"can not convert end_latitude:abcd to float."
+            },{
+                "end_latitude":"",
+                "result":"can not convert end_latitude: to float."
+            },
+
+            {
+                "end_latitude":-90.001,
+                "result":"end_latitude out of range(-90,90)."
+            },{
+                "end_latitude":90.001,
+                "result":"end_latitude out of range(-90,90)."
+            },
+
+            {
+                "start_longitude":261.588,
+                "end_longitude":43.433,
+                "result":"the range of location is invalid."
+            },
+
+            {
+                "sample_rate":"",
+                "result":"please select sample_rate in [min, sec], default:min, you can select both, use ',' to split them."
+            },{
+                "sample_rate":"sad",
+                "result":"please select sample_rate in [min, sec], default:min, you can select both, use ',' to split them."
+            },
+
+            {
+                "data_type":"",
+                "result":"please select data_type in [v, p, q, d], default:v, you can select more, use ',' to split them."
+            },{
+                "data_type":"d,h",
+                "result":"please select data_type in [v, p, q, d], default:v, you can select more, use ',' to split them."
+            },
+
+            {
+                "reported_type":"",
+                "result":"reported_type"
+            },{
+                "reported_type":"XYZF,ASD",
+                "result":"reported_type"
+            },
+
+            {
+                "term":"",
+                "result":"term is invalid."
+            },{
+                "term":"X,D",
+                "result":"the Geomagnetic component:D not in the data reported type:XYZF that you selected or default:XYZF."
+            },{
+                "reported_type":"HDZF",
+                "term":"X,D",
+                "result":"the Geomagnetic component:X not in the data reported type:HDZF that you selected or default:XYZF."
+            },
+
+            {
+                "offset":"5.3",
+                "result":"can not convert offset:5.3 to int."
+            },{
+                "offset":"asd",
+                "result":"can not convert offset:asd to int."
+            },
+
+            {
+                "offset":-10,
+                "result":"offset:-10 isn't a nonnegative number."
+            },
+
+            {
+                "number":"9.8",
+                "result":"can not convert number:9.8 to int."
+            },{
+                "number":"asd",
+                "result":"can not convert number:asd to int." 
+            },
+
+            {
+                "number":0,
+                "result":"number:0 isn't a positive number."
+            },{
+                "number":-20,
+                "result":"number:-20 isn't a positive number."
+            },
+
+            {
+                "number":100001,
+                "result":"the max number is 100000"
+            },
+
+            {},{
+                "start_time":"2010-02-01 00:00:00",
+                "end_time":"2010-02-01 00:10:00",
+                "start_longitude":0,
+                "end_longitude":360,
+                "start_latitude":-90,
+                "end_latitude":90,
+                "sample_rate":"min",
+                "stations":"all",
+                "data_type":"v",
+                "reported_type":"XYZF",
+                "term":"X,Y,Z,F",
+                "offset":0,
+                "number":100000
+            },{
+                "start_time":"2010-02-04 11:20:14",
+                "end_time":"2010-02-04 11:22:16",
+                "start_longitude":43.433,
+                "end_longitude":261.588,
+                "start_latitude":-59.197,
+                "end_latitude":67.25,
+                "stations":"API,SHU,NEW,SJG",
+                "sample_rate":"sec",
+                "data_type":"p",
+                "reported_type":"XYZ",
+                "term":"X,Z",
+                "offset":132,
+                "number":234
+            },{
+                "start_time":"2010-02-09 13:30:14",
+                "end_time":"2010-02-09 13:34:16",
+                "start_longitude":43.433,
+                "end_longitude":261.588,
+                "start_latitude":-59.197,
+                "end_latitude":67.25,
+                "stations":"API,HRN,PPT,TDC,SHU,all,NEW,SJG",
+                "sample_rate":"min",
+                "data_type":"d",
+                "reported_type":"XYZF",
+                "term":"X,Z",
+                "offset":132,
+                "number":472
+            },{
+                "start_time":"2010-02-17 18:23:14",
+                "end_time":"2010-02-17 18:24:14",
+                "start_longitude":43.433,
+                "end_longitude":261.588,
+                "start_latitude":-59.197,
+                "end_latitude":67.25,
+                "stations":"all",
+                "sample_rate":"min,sec",
+                "data_type":"p,v",
+                "reported_type":"HDZF",
+                "term":"D,F",
+                "offset":13,
+                "number":47
+            },{
+                "start_time":"2010-02-17 18:23:14",
+                "end_time":"2010-02-17 18:23:14"
+            }
+        ]
+    }
+}

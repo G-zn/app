@@ -1,0 +1,124 @@
+{
+    "sources": {
+        "URL": "/istp/sources",
+        "values": [
+            {
+                "instrument_type": "Particles (space)"
+            },
+            {
+                "instrument_type": "asd"
+            },
+            {}
+        ]
+    },
+    "instrument_types": {
+        "URL": "/istp/instrument_types",
+        "values": [
+            {
+                "source_name": "AC"
+            },
+            {
+                "source_name": "QW"
+            },
+            {}
+        ]
+    },
+    "instruments": {
+        "URL": "/istp/instruments",
+        "values": [
+            {
+                "source_name": "AC"
+            },
+            {
+                "instrument_type": "Particles (space)"
+            },
+            {
+                "source_name": "DF"
+            },
+            {
+                "instrument_type": "asd"
+            },
+            {
+                "source_name": "AC",
+                "instrument_type": "Particles (space)"
+            },
+            {}
+        ]
+    },
+    "data_sets": {
+        "URL": "/istp/data_sets",
+        "values": [
+            {
+                "source_name": "AC"
+            },
+            {
+                "instrument_type": "Particles (space)"
+            },
+            {
+                "source_name": "DF"
+            },
+            {
+                "instrument_type": "asd"
+            },
+            {
+                "source_name": "AC",
+                "instrument_type": "Particles (space)"
+            },
+            {
+                "instruments": "EPAM"
+            },
+            {
+                "instruments": "ASD"
+            },
+            {
+                "source_name": "AC",
+                "instrument_type": "Particles (space)",
+                "instrument": "EPAM"
+            },
+            {}
+        ]
+    },
+    "variables": {
+        "URL": "/istp/data_sets/",
+        "values": [
+            {
+                "data_set": "ac_h1_epm"
+            },
+            {
+                "data_set": "ac_h3_epam"
+            }
+        ]
+    },
+    "data": {
+        "URL": "/istp/data_sets/",
+        "values": [
+            {
+                "data_set": "ac_h1_epm",
+                "varibles": "DE1"
+            },
+            {
+                "data_set": "ac_h2_epm",
+                "varibles": "unc_DE1",
+                "start_time": "2001-01-01 00:00:00",
+                "end_time": "2010-01-02 00:00:00",
+                "offset": 13,
+                "number": 100
+            },
+            {
+            	"data_set": "ac_h2_epm",
+                "varibles": "unc_DE1"
+            },
+            {
+                "data_set": "ac_h1_epam"
+            },
+            {
+                "data_set": "ac_h1_epm",
+                "varibles": "zn"
+            },
+            {
+                "data_set": "ac_h1_epm",
+                "varibles": "Epoch"
+            }
+        ]
+    }
+}
