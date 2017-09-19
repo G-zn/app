@@ -19,7 +19,7 @@ from ..common.istp_db import ISTP_DB
 
 @main.before_request
 def get_db():
-    print "-" * 50
+    # print "-" * 50
     flag = os.popen(
         "ps -aux|grep mongod|grep -v grep|awk '{print $1}'").readlines()
     if len(flag) > 0:

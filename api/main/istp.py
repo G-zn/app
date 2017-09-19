@@ -26,9 +26,6 @@ def get_sources():
     if instrument_type != None:
         condition["Instrument_type"] = instrument_type
     sources = db.get_element_and_full_list("Source_name", condition)
-    # print "-------------------------------"
-    # print "* a new request:", request.url
-    # print "-------------------------------"
     return jsonify({"sources": sources})
 
 
@@ -84,16 +81,12 @@ def get_data_sets():
 
 
 # @cross_origin()
-
 @main.route("/istp/data_sets/<data_set>/variables", methods=['GET'])
 @cache.cached(timeout=10)
 def get_data_set_variables(data_set):
     db = getattr(g, 'ISTP_DB', None)
     if db == None:
         return jsonify({"error": "can't connect to background database service."}), 503
-    # print "-------------------------------"
-    # print "* a new request:", request.url
-    # print "-------------------------------"
     return jsonify({"variables": db.get_variables(data_set, "data")})
 
 
@@ -126,11 +119,19 @@ def get_data(data_set):
     variables = request.args.get("variables", None)
     if variables == None:
         return jsonify({"error": "variables"}), 400
-    variables = variables.strip()
+    variables = variables.split(",")
+    i = 0
+    while i < len(variables):
+        variables[i] = variables[i].strip()
+        i += 1
 
-    attr = db.get_attribute(data_set, variables)
-    if "error" in attr:
-        return jsonify({"attributes": attr, "data": [], "count": 0})
+    attrs = db.get_attribute(data_set, variables)
+    if "error" in attrs:
+        if attrs["error"] == "data_set":
+            return jsonify({"error": "not find the data_set."}), 400
+        if attrs["error"] == "variables":
+            return jsonify({"error": "not find any variable exist in the data_set."}), 400
+
     data = db.get_data(data_set, variables, start_time, end_time)
 
     try:
@@ -150,4 +151,4 @@ def get_data(data_set):
         return jsonify({"error": "the max number is 100000."}), 400
 
     data = list(data[offset:offset + number])
-    return jsonify({"attributes": attr, "data": data, "count": len(data)})
+    return jsonify({"attributes": attrs, "data": data, "count": len(data)})

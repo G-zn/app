@@ -94,26 +94,31 @@
         "values": [
             {
                 "data_set": "ac_h1_epm",
-                "varibles": "DE1"
+                "variables": "DE1"
             },
             {
                 "data_set": "ac_h2_epm",
-                "varibles": "unc_DE1",
+                "variables": "unc_DE1",
                 "start_time": "2001-01-01 00:00:00",
                 "end_time": "2010-01-02 00:00:00",
                 "offset": 13,
                 "number": 100
             },
             {
-            	"data_set": "ac_h2_epm",
-                "varibles": "unc_DE1"
+                "data_set": "ac_h2_epm",
+                "variables": "DE1, unc_DE1 "
             },
             {
-                "data_set": "ac_h1_epam"
+                "data_set": "ac_h1_epam",
+                "variables": "DE1,aac"
+            },
+            {
+                "data_set": "ac_h1_epam",
+                "variables": "DE1,unc_DE1"
             },
             {
                 "data_set": "ac_h1_epm",
-                "varibles": "zn"
+                "varibles": "zn,sd,sd,Epoch"
             },
             {
                 "data_set": "ac_h1_epm",

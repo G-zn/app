@@ -61,13 +61,16 @@ class ISTP_DB:
     def get_attribute(self, logical_source, variables):
         term = {}
         term["_id"] = 0
-        term[variables] = 1
+        var_list = self.get_variables(logical_source, "data")
+        for variable in variables:
+            if variable in var_list:
+                term[variable] = 1
         attr = self.conn.get_collection("attrs").find_one(
             {"_id": logical_source}, term)
         if attr == None:
             return {"error": "data_set"}
-        elif attr == {}:
-            return {"error": "vaiables"}
+        elif len(term) <= 1:
+            return {"error": "variables"}
         var_list = self.get_variables(logical_source)
         for variable in attr.keys():
             for key in attr[variable].values():
@@ -78,17 +81,21 @@ class ISTP_DB:
         return attr
 
     def get_data(self, logical_source, variables, start_time=None, end_time=None):
+        term = {}
         attr = self.get_attribute(logical_source, variables)
         if "error" in attr:
-            return []
-        term = {}
+            return attr, []
+        for variable in attr.keys():
+            term[variable] = 1
         term["_id"] = 0
-        term[variables] = 1
         term["time_stamp"] = 1
         condition = {}
         condition["Logical_source"] = logical_source
         if start_time != None and end_time != None:
             condition["time_stamp"] = {"$gte": start_time, "$lte": end_time}
-        condition[variables] = {"$exists": 1}
+        variables = list(set(variables) & set(attr.keys()))
+        condition["$or"] = []
+        for variable in variables:
+            condition["$or"].append({variable: {"$exists": 1}})
         data = self.conn.get_collection("data").find(condition, term)
         return data

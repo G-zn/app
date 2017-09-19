@@ -183,41 +183,44 @@ class test_istp(unittest.TestCase):
                 result = "can't connect to background database service."
             else:
                 data_set = value["data_set"]
-                attr = db.get_collection("attrs").find_one({"_id": data_set})
-                tmp = []
-                if "variables" in value:
-                    if attr != None:
-                        var = value["variables"]
-                        if var in attr:
-                            if "VAR_TYPE" in attr[var] and attr[var]["VAR_TYPE"] == 'data':
-                                tmp.append(var)
-                                for val in attr[var].values():
-                                    if val in attr:
-                                        tmp.append[val]
-                            else:
-                                attr = {"error": "variables"}
-                        else:
-                            attr = {"error": "variables"}
-                    else:
-                        attr = {"error": "variables"}
+                attr = db.get_collection("attrs").find_one(
+                    {"_id": data_set}, {"_id": 0})
+                if attr == None:
+                    result = "error"
+                elif "variables" not in value:
+                    result = "error"
                 else:
-                    attr = {"error": "variables"}
-                if "error" in attr:
-                    data = []
-                else:
-                    data = tmp
+                    variables = value["variables"].split(',')
+                    i = 0
+                    while i < len(variables):
+                        variables[i] = variables[i].strip()
+                        i += 1
+                    result = []
+                    for var in variables:
+                        if var in attr and isinstance(attr[var], dict):
+                            if "VAR_TYPE" in attr[var] and attr[var]["VAR_TYPE"] == "data":
+                                if var not in result:
+                                    result.append(var)
+                                for key in attr[var].values():
+                                    if key in attr and key not in result:
+                                        result.append(key)
+                    if result == []:
+                        result = "error"
+
             geturl += value["data_set"] + "/data"
+            del value["data_set"]
+            parameters = urllib.urlencode(value)
+            if parameters != "":
+                geturl = geturl + "?" + parameters
             response = self.app.get(geturl)
             if response.status_code == 200:
                 res = json.loads(response.data)
-                attributes = tes["attributes"]
-                if len(data) == len(attributes.keys()):
-                    for key in data:
-                        if key not in attributes.keys():
-                            self.assertTrue(False)
-                else:
+                if len(result) != len(res["attributes"].keys()):
                     self.assertTrue(False)
+                for key in result:
+                    if key not in res["attributes"]:
+                        self.assertTrue(False)
             else:
                 res = json.loads(response.data)
-                if res["error"] != attr["error"]:
+                if result not in res:
                     self.assertTrue(False)
