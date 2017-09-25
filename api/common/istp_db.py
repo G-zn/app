@@ -8,7 +8,7 @@
 import os
 from base_conn import getConn
 
-cdf_db = "CDF_Release"
+cdf_db = "ISTP_1"
 cdf_attrs = 'attrs'
 cdf_data = 'data'
 
@@ -99,3 +99,19 @@ class ISTP_DB:
             condition["$or"].append({variable: {"$exists": 1}})
         data = self.conn.get_collection("data").find(condition, term)
         return data
+
+
+def test_zn():
+    cdf = ISTP_DB()
+    data_sets = cdf.get_data_sets({})
+    res = []
+    for k in data_sets:
+        data_set = k["_id"]
+        var_list = cdf.get_variables(data_set, "data")
+        # print var_list
+        attrs = cdf.get_attribute(data_set, var_list)
+        for i in attrs:
+            if i in var_list and "DISPLAY_TYPE" in attrs[i]:
+                res.append(attrs[i]["DISPLAY_TYPE"])
+
+    print set(res)
